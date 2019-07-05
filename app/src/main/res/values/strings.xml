@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="this_is_my_first_post_on_the_to_do_list">This is my first post on the To Do List</string>
+    <string name="it_was_a_sunday_of_the_7th_july_2019_after_church_that_i_resorted_to_testing_my_understanding_of_ptogramming_from_scratch">
+        It was a sunday of the 7th/ July/ 2019 after church that I resorted to testing my understanding of ptogramming
+        from scratch
+    </string>
 </resources>
