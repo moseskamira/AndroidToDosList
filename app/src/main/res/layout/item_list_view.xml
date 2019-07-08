@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/list_item"
+        android:layout_height="match_parent">
+
+    <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/post_id_display"
+            android:text="@string/to_do_id"
+            android:textSize="24sp"
+            android:paddingVertical="12dp"
+            tools:ignore="MissingConstraints">
+
+
+    </TextView>
+    <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/post_id"
+            android:textSize="24sp"
+            android:paddingVertical="12dp"
+            app:layout_constraintLeft_toRightOf="@id/post_id_display"
+            tools:ignore="MissingConstraints">
+
+
+    </TextView>
+
+    <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/title_id"
+            android:text="@string/this_is_my_first_post_on_the_to_do_list"
+            android:textSize="28sp"
+            android:paddingVertical="12dp"
+            tools:ignore="MissingConstraints">
+
+
+    </TextView>
+
+    <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/body_id"
+            android:text="@string/it_was_a_sunday_of_the_7th_july_2019_after_church_that_i_resorted_to_testing_my_understanding_of_ptogramming_from_scratch"
+            android:textSize="24sp"
+            android:paddingVertical="12dp"
+            tools:ignore="MissingConstraints">
+
+
+    </TextView>
+
+</android.support.constraint.ConstraintLayout>
