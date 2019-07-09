@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.example.myapplication.adapter.PostAdapter
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity(), AllPostsView {
     lateinit var availablePosts: ArrayList<Post>
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var postAdapter: PostAdapter
+    lateinit var listState: Parcelable
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,4 +40,18 @@ class MainActivity : AppCompatActivity(), AllPostsView {
     private fun loadPosts(){
         presenter.presentAllPosts(this)
     }
+
+    override fun onSaveInstanceState(savedInstanceState: Bundle?) {
+        super.onSaveInstanceState(savedInstanceState)
+        savedInstanceState?.putParcelableArrayList("Post", availablePosts)
+        listState = layoutManager.onSaveInstanceState()!!
+        savedInstanceState?.putParcelable("State_Key", listState)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+        availablePosts = savedInstanceState!!.getParcelableArrayList("Post")
+        listState = savedInstanceState!!.getParcelable("State_key")
+    }
+
 }
