@@ -4,26 +4,38 @@ import com.example.myapplication.model.Post
 import com.example.myapplication.service.PostAPI
 import com.example.myapplication.service.PostService
 import com.example.myapplication.view.AllPostsView
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import io.reactivex.Observer
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
+import kotlin.collections.ArrayList
 
 class PostPresenter {
-    var postApiInterface: PostAPI = PostService().getRetrofit()
+    private val postApiInterface: PostAPI = PostService()!!.getRetrofit()!!
+    private lateinit var newPostsView: AllPostsView
 
     fun presentAllPosts(allPostsView: AllPostsView){
-        postApiInterface.getAllPosts().enqueue(object: Callback<ArrayList<Post>> {
-
-            override fun onResponse(call: Call<ArrayList<Post>>?, response: Response<ArrayList<Post>>?) {
-                if (response!!.body() != null) {
-                    allPostsView.displayAllPosts(response.body())
-                }
-            }
-
-            override fun onFailure(call: Call<ArrayList<Post>>?, t: Throwable?) {
-                TODO("not implemented") //To change body of created File Templates.
-            }
-        })
+        newPostsView = allPostsView
+        postApiInterface.getAllPosts()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe (myObserver)
     }
 
+    private val myObserver = object: Observer<ArrayList<Post>> {
+        override fun onSubscribe(d: Disposable) {
+        }
+
+        override fun onNext(t: ArrayList<Post>) {
+            newPostsView.displayAllPosts(t)
+        }
+
+        override fun onError(e: Throwable) {
+            e.message
+        }
+
+        override fun onComplete() {
+        }
+    }
 }
+

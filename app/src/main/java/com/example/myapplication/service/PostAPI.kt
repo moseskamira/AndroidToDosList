@@ -1,11 +1,12 @@
 package com.example.myapplication.service
 
 import com.example.myapplication.model.Post
-import retrofit2.Call
+import io.reactivex.Observable
 import retrofit2.http.GET
+import kotlin.collections.ArrayList
 
 interface PostAPI {
 
     @GET("posts")
-    fun getAllPosts(): Call<ArrayList<Post>>
+    fun getAllPosts(): Observable<ArrayList<Post>>
 }
