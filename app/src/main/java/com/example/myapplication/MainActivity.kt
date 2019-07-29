@@ -8,8 +8,6 @@ import android.support.v7.widget.RecyclerView
 import com.example.myapplication.adapter.PostAdapter
 import com.example.myapplication.model.Post
 import com.example.myapplication.presenter.PostPresenter
-import com.example.myapplication.service.PostAPI
-import com.example.myapplication.service.PostService
 import com.example.myapplication.view.AllPostsView
 
 class MainActivity : AppCompatActivity(), AllPostsView {
@@ -19,7 +17,6 @@ class MainActivity : AppCompatActivity(), AllPostsView {
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var postAdapter: PostAdapter
     lateinit var listState: Parcelable
-    private val postApiInterface: PostAPI = PostService().getRetrofit()!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,6 +52,12 @@ class MainActivity : AppCompatActivity(), AllPostsView {
         super.onRestoreInstanceState(savedInstanceState)
         availablePosts = savedInstanceState!!.getParcelableArrayList("Post")!!
         listState = savedInstanceState.getParcelable("State_key")!!
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        val presenterInstance = PostPresenter()
+        presenterInstance.disposables.clear()
     }
 
 }

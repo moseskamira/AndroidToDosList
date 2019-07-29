@@ -6,4 +6,7 @@
         from scratch
     </string>
     <string name="to_do_id">To Do ID</string>
+    <string name="post_id">Post ID:</string>
+    <string name="title">Title:</string>
+    <string name="body">Body:</string>
 </resources>
