@@ -9,9 +9,11 @@ import com.example.myapplication.R
 import com.example.myapplication.model.Post
 import kotlinx.android.synthetic.main.item_list_view.view.*
 
-class PostAdapter(val context: Context, private val availablePosts: ArrayList<Post>): RecyclerView.Adapter<PostAdapter.ViewHolder>() {
+class PostAdapter(val context: Context, private val availablePosts: ArrayList<Post>):
+    RecyclerView.Adapter<PostAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_list_view, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R
+            .layout.item_list_view, parent, false)
         return ViewHolder(view)
     }
 
@@ -20,26 +22,14 @@ class PostAdapter(val context: Context, private val availablePosts: ArrayList<Po
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val postId = holder.postId
-        if (postId != null){
-            postId.text = availablePosts[position].id.toString()
-        }
-
-        val title = holder.title
-        title.text = availablePosts[position].title
-        val body = holder.body
-        body.text = availablePosts[position].body
-
+        holder.postId.text = availablePosts[position].id.toString()
+        holder.title.text = availablePosts[position].title
+        holder.body.text = availablePosts[position].body
     }
-
 
     inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        var postId = itemView.post_id
-        var title = itemView.title_id
-        var body = itemView.body_id
-//        var parentLayout = itemView.list_item
-
-
+        var postId = itemView.post_id!!
+        var title = itemView.title_id!!
+        var body = itemView.body_id!!
     }
-
 }
